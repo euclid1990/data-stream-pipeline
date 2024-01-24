@@ -175,12 +175,24 @@ SELECT
     parse_json(\$1):c13 as generate_date
 FROM s3_to_snowflake.PUBLIC.Orders;
 
+-- Count Total records
+SELECT COUNT(*) AS Total FROM s3_to_snowflake.PUBLIC.Orders;
+
 -- Retrieve the billing history for an external table in last 12 hours, by 1 hour periods
 SELECT *
   FROM TABLE(information_schema.auto_refresh_registration_history(
     date_range_start=>dateadd('hour',-12,current_timestamp()),
     object_type=>'external_table',
     object_name=>'s3_to_snowflake.PUBLIC.Orders'));
+
+-- Get Orders table size in MB
+SELECT
+  table_schema,
+  table_name,
+  round(bytes/1024/1024, 2) as table_size
+FROM information_schema.tables
+WHERE table_name = 'ORDERS'
+ORDER BY table_size DESC;
 EOL
 )
 
