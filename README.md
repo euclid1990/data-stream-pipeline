@@ -12,6 +12,8 @@ Infrastructure is provisioned with the AWS CDK v2.
 
 Data is sent to Kinesis Data Streams by using AWS SDK v3.
 
+![](./DataStreamPipeline.png)
+
 *I'm a bit lazy when it comes to creating a Makefile, you can create a Makefile to run shorter bash commands.*
 
 ## Init environment file
