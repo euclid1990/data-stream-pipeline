@@ -137,7 +137,8 @@ dist
 id.txt
 integration.sql
 outputs.json
-.$DataStreamPipeline.drawio.bkp
+.DS_Store
+.*.drawio.bkp
 
 # CDK asset staging directory
 .cdk.staging

@@ -49,8 +49,8 @@ Data is sent to Kinesis Data Streams by using AWS SDK v3.
 ## Proceduce data to Kinesis Firehose Stream
 
 - `npm run watch` For build and develop source code in Local
-- `npm run produce`
-  - `npm run produce 1000` to send 1000 records to Kinesis Data Stream
+- `npm run produce` / `./scripts/produce.sh`
+  - `npm run produce 1000` / `./scripts/produce.sh 1000` to send 1000 records to Kinesis Data Stream
 
 ## Load S3 data to Snowflake
 
