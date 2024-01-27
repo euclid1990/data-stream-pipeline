@@ -44,7 +44,7 @@ class KinesisDataStream {
       id = parseInt(content, 10);
       // Check if id is NaN and set it to 0 in that case
       if (isNaN(id)) {
-        id = 0;
+        id = 1;
       }
     } catch (error: any) {
       // If the file doesn't exist, create a new file and initialize ID to 1
@@ -103,7 +103,8 @@ class KinesisDataStream {
 
         // Create a batch of records
         for (let j = 0; j < batchSize && i + j < times; j++) {
-          const data = this.fake(id++);
+          const data = this.fake(id);
+          id++;
           const record: PutRecordsRequestEntry = {
             Data: Buffer.from(JSON.stringify(data)),
             PartitionKey: data.customer_id.toString()
@@ -123,7 +124,7 @@ class KinesisDataStream {
         if (result.FailedRecordCount !== undefined && result.FailedRecordCount > 0) {
           console.error('Some records failed to be put to Kinesis:', result.Records?.filter(record => !!record.ErrorCode));
         } else {
-          console.info(`Successfully put batch of ${recordsBatch.length} records (ID: ${id - batchSize + 1} ~ ${id - 1}) to Kinesis`);
+          console.info(`Successfully put batch of ${recordsBatch.length} records (ID: ${id - batchSize} ~ ${id - 1}) to Kinesis`);
         }
 
         this.setIncrementId(id);
