@@ -9,7 +9,7 @@ aws sts get-caller-identity
 COMMON_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Read variables from the .env file
-source "$SCRIPT_DIR/./../.env"
+source "$COMMON_SCRIPT_DIR/./../.env"
 
 # Get the ARN of the IAM role
 CDK_ROLE_ARN=$(aws iam get-role --role-name $CDK_ROLE_NAME --query 'Role.Arn' --output text)
