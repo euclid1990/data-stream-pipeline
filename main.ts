@@ -123,7 +123,7 @@ class KinesisDataStream {
         if (result.FailedRecordCount !== undefined && result.FailedRecordCount > 0) {
           console.error('Some records failed to be put to Kinesis:', result.Records?.filter(record => !!record.ErrorCode));
         } else {
-          console.info(`Successfully put batch of ${recordsBatch.length} records (ID: ${id - batchSize} ~ ${id-1}) to Kinesis`);
+          console.info(`Successfully put batch of ${recordsBatch.length} records (ID: ${id - batchSize + 1} ~ ${id - 1}) to Kinesis`);
         }
 
         this.setIncrementId(id);
